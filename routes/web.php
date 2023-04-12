@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
+    Route::post('/customers/store', [CustomerController::class, 'store'])->name('customer.store');
+    Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::put('/customers/{id}/update', [CustomerController::class, 'update'])->name('customer.update');
+    Route::delete('/customers/{id}/delete', [CustomerController::class, 'delete'])->name('customer.delete');
 });
 
 // Route::middleware('auth')->group(function () {
