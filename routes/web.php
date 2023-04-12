@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
     Route::put('/customers/{id}/update', [CustomerController::class, 'update'])->name('customer.update');
     Route::delete('/customers/{id}/delete', [CustomerController::class, 'delete'])->name('customer.delete');
+
+    Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
+    Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
+
+    // Route::get('/payment/create/{}', [PaymentController::class, 'store'])->name('payment.store');
 });
 
 // Route::middleware('auth')->group(function () {

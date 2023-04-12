@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('Order-ID');
             $table->string('Menu-ID');
             $table->tinyInteger('Quantity');
-            $table->enum('Sugar-Level', ['Less', 'Normal', 'More']);
-            $table->enum('Ice-Level', ['Less', 'Normal', 'More']);
+            $table->enum('Sugar-Level', ['Less', 'Normal', 'More'])->nullable();
+            $table->enum('Ice-Level', ['Less', 'Normal', 'More'])->nullable();
             $table->timestamps();
 
             $table->primary('Order-Detail-ID');
