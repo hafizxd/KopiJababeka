@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_table', function (Blueprint $table) {
-            $table->string('User-ID');
-            $table->string('User-Name');
-            $table->string('User-Login')->unique();
-            $table->string('Password');
+        Schema::create('order_table', function (Blueprint $table) {
+            $table->string('Order-ID');
+            $table->string('Customer-ID');
+            $table->string('Date');
             $table->timestamps();
 
-            $table->primary('User-ID');
+            $table->primary('Order-ID');
+            $table->foreign('Customer-ID')->references('Customer-ID')->on('customer_table')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_table');
+        Schema::dropIfExists('order_table');
     }
 };
