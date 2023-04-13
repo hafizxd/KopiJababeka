@@ -13,18 +13,11 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public $table = 'user_table';
+    public $incrementing = false;
 
     protected $primaryKey = 'User-ID';
 
-    protected $fillable = [
-        'User-ID',
-        'User-Name',
-        'User-Login',
-    ];
-    
-    protected $hidden = [
-        'Password'
-    ];
+    protected $guarded = [];
 
     public function getAuthPassword() {
         return $this->Password;

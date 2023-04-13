@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,16 +24,21 @@ Route::middleware('auth')->group(function () {
     Route::put('/customers/{id}/update', [CustomerController::class, 'update'])->name('customer.update');
     Route::delete('/customers/{id}/delete', [CustomerController::class, 'delete'])->name('customer.delete');
 
+    Route::get('/order/index', [OrderController::class, 'index'])->name('order.index');
     Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
     Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
 
-    // Route::get('/payment/create/{}', [PaymentController::class, 'store'])->name('payment.store');
-});
+    Route::get('/payment/create/{orderId}', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('/payment/store/{orderId}', [PaymentController::class, 'store'])->name('payment.store');
+    Route::get('/payment/notification/{paymentId}', [PaymentController::class, 'notify'])->name('payment.notification');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::post('/users/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/users/{id}/update', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/users/{id}/delete', [UserController::class, 'delete'])->name('user.delete');
+
+    Route::get('/reports/products', [OrderController::class, 'productReport'])->name('report.product');
+});
 
 require __DIR__.'/auth.php';

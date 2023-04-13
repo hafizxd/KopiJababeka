@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
@@ -11,6 +12,12 @@ use App\Models\Menu;
 
 class OrderController extends Controller
 {
+    public function index() {
+        $orders = Order::orderBy('created_at', 'desc')->paginate(10);
+
+        return view('orders.index', compact('orders'));
+    }
+
     public function create() {
         $menus = Menu::orderBy('Menu-ID', 'ASC')->get();
         $customers = Customer::orderBy('created_at', 'desc')->get();
@@ -64,9 +71,15 @@ class OrderController extends Controller
 
         
         if ($request->payment == 'true') {
-            dd('Bayar');
+            return redirect()->route('payment.create', ['orderId' => $order->{'Order-ID'}]);
         } else {
             return redirect()->back();
         }
+    }
+
+    public function productReport() {
+        $products = OrderDetail::select('Menu-ID', DB::raw('SUM(Quantity) as SUM_QTY'))->with('menu')->groupBy('Menu-ID')->paginate(10);
+
+        return view('report-products.index', compact('products'));
     }
 }

@@ -7,7 +7,7 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('customer.index') }}">
                         {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" /> --}}
-                        <p class='inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-white focus:outline-none transition duration-150 ease-in-out'>KOPI DARI HATI</p>
+                        <p class='inline-flex items-center px-1 pt-1 text-sm font-black leading-5 text-white focus:outline-none transition duration-150 ease-in-out'>RANTAU COFFEE</p>
                     </a>
                 </div>
 
@@ -20,6 +20,15 @@
                 </x-nav-link>
                 <x-nav-link :href="route('order.create')" :active="request()->routeIs('order.create')">
                     Order
+                </x-nav-link>
+                <x-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
+                    Order History
+                </x-nav-link>
+                <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                    User
+                </x-nav-link>
+                <x-nav-link :href="route('report.product')" :active="request()->routeIs('report.product')">
+                    Product Report
                 </x-nav-link>
             </div>
 
