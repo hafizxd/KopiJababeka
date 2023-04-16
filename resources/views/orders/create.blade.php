@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 
-    <div x-data="{ selectedOrders: [], payment: false }" class="grid grid-cols-5 gap-2 min-h-max">
-        <div class="col-span-3 py-6">
+    <div x-data="{ selectedOrders: [], payment: false }" class="grid grid-cols-2 gap-2 min-h-max">
+        <div class="col-span-1 py-6">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="p-1 text-gray-800">
                     <div class="grid grid-cols-4 gap-4">
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="col-span-2 min-h-full">
+        <div class="col-span-1 min-h-full">
             <div class="bg-white flex flex-col justify-between">
                 <div class="py-6 sm:px-6 lg:px-8">
                     <h3>Order</h3>
@@ -65,6 +65,9 @@
                                     <p class="text-left text-gray-600 text-xs mb-1">Ice Level</p>
                                 </th>
                                 <th>
+                                    <p class="text-left text-gray-600 text-xs mb-1">Cup Level</p>
+                                </th>
+                                <th>
                                     <p class="text-left text-gray-600 text-xs mb-1">Jumlah</p>
                                 </th>
                                 <th>
@@ -91,7 +94,13 @@
                                             <option value="More">More</option>
                                         </select>
                                     </td>
-                                    <td><input class="border-gray-600 rounded-sm w-20 text-center text-gray-700" min="1" value="1" type="number" name="qtys[]"></td>
+                                    <td>
+                                        <select name="cup_level[]" id="" x-show="selected.type == 'Drink'">
+                                            <option value="Regular">Regular</option>
+                                            <option value="Large">Large</option>
+                                        </select>
+                                    </td>
+                                    <td><input class="border-gray-600 rounded-sm w-14 text-center text-gray-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" min="1" value="1" type="number" name="qtys[]"></td>
                                     <td><button type="button" @click="selectedOrders = selectedOrders.filter((val, key) => key != index)" class="border-red-500 text-red-500 border rounded-md px-3 py-2 hover:bg-red-500 hover:text-white transition duration-200 ease-in-out"><i class="uil uil-trash-alt"></i></button></td>
                                 </tr>
                             </template>

@@ -57,6 +57,7 @@ class OrderController extends Controller
             if ($menu->{'Product-Type'} == 'Drink') {
                 $insertDetails[$key]['Ice-Level'] = $request->ice_level[$key];
                 $insertDetails[$key]['Sugar-Level'] = $request->sugar_level[$key];
+                $insertDetails[$key]['Cup-Level'] = $request->cup_level[$key];
             }
         }
 

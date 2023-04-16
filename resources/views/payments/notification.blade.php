@@ -29,6 +29,7 @@
                                             <th scope="col" class="px-6 py-4">Nama</th>
                                             <th scope="col" class="px-6 py-4">Ice Level</th>
                                             <th scope="col" class="px-6 py-4">Sugar Level</th>
+                                            <th scope="col" class="px-6 py-4">Cup Level</th>
                                             <th scope="col" class="px-6 py-4">Price</th>
                                         </tr>
                                     </thead>
@@ -44,6 +45,8 @@
                                                     {{ $detail->menu->{'Product-Type'} == 'Drink' ? $detail->{'Ice-Level'} : '' }}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">
                                                     {{ $detail->menu->{'Product-Type'} == 'Drink' ? $detail->{'Sugar-Level'} : '' }}</td>
+                                                <td class="whitespace-nowrap px-6 py-4">
+                                                    {{ $detail->menu->{'Product-Type'} == 'Drink' ? $detail->{'Cup-Level'} : '' }}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">
                                                     {{ number_format($detail->menu->{'Product-Price'} * $detail->{'Quantity'}, 0, '.', ',') }}
                                                 </td>
